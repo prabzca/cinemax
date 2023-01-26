@@ -114,10 +114,10 @@ form.addEventListener('submit', (e) => {
     const searchTerm = search.value;
 
     if (searchTerm) {
-        getAll(searchURL + '&query=' + searchTerm)
+        getPopularMovies(searchURL + '&query=' + searchTerm)
         location.replace('?search=' + searchTerm);
     } else {
-        getAll(MOVIE_API_URL);
+        getPopularMovies(MOVIE_API_URL);
     }
 
 })
