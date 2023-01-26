@@ -17,12 +17,9 @@ const popularMovies = document.getElementById('popular-movies');
 const popularTV = document.getElementById('popular-tv');
 const popularPeople = document.getElementById('popular-people');
 
-const carouselItems = document.getElementById('carousel-items');
-
 getPopularMovies(MOVIE_API_URL);
 getPopularShows(TV_API_URL);
 getPopularPeople(PERSON_API_URL);
-getCarouselItems(MOVIE_API_URL);
 
 function getPopularMovies(url) {
     fetch(url)
@@ -45,14 +42,6 @@ function getPopularPeople(url) {
         .then(res => res.json())
         .then(data => {
             showPopularPeople(data.results.slice(0, 7))
-        })
-}
-
-function getCarouselItems(url) {
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            showCarouselItems(data.results.slice(0, 1))
         })
 }
 
@@ -115,26 +104,6 @@ function showPopularPeople(data) {
             </div>
         `
         popularPeople.appendChild(personEl);
-    })
-}
-
-function showCarouselItems(data) {
-    carouselItems.innerHTML = '';
-
-    data.forEach(item => {
-        const { backdrop_path } = item;
-        const carouselEl = document.createElement('div');
-        carouselEl.classList.add('relative');
-        carouselEl.classList.add('overflow-hidden');
-        carouselEl.classList.add('shadow-md');
-        carouselEl.classList.add('rounded-2xl');
-
-        carouselEl.innerHTML = `
-            <div class="duration-700 ease-in-out" data-carousel-item="active">
-                <img src="images/header-1.jpg" alt="..." draggable="false">
-            </div>
-        `
-        carouselItems.appendChild(carouselEl);
     })
 }
 
